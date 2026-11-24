@@ -1,0 +1,22 @@
+#include "simulation/MuJoCoSimulator.h"
+#include "rendering/MuJoCoViewer.h"
+
+#include <exception>
+#include <iostream>
+
+int main() {
+    try {
+        MuJoCoSimulator simulator(
+            "models/formula1_custom.xml"
+        );
+
+        MuJoCoViewer viewer(simulator);
+        viewer.run();
+
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << '\n';
+        return 1;
+    }
+
+    return 0;
+}

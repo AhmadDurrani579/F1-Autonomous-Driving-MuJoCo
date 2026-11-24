@@ -1,0 +1,200 @@
+<mujoco model="Formula1Dynamic">
+  <compiler angle="radian" meshdir="../assets/f1_car" />
+  <option timestep="0.002" gravity="0 0 -9.81" integrator="implicitfast" />
+
+<!-- Daylight and camera lighting -->
+<visual>
+  <headlight
+      ambient="0.40 0.40 0.40"
+      diffuse="0.65 0.65 0.65"
+      specular="0.20 0.20 0.20"/>
+
+  <global
+      azimuth="135"
+      elevation="-25"/>
+</visual>
+
+
+  <default>
+    <joint damping="0.5" armature="0.01" />
+    <geom condim="3" friction="1.2 0.005 0.0001" solref="0.02 1" solimp="0.9 0.95 0.001" />
+  </default>
+  <asset>
+    <mesh name="chassis_mesh" file="chassis.obj" />
+    <mesh name="FL_mesh" file="wheel_FL.obj" />
+    <mesh name="FR_mesh" file="wheel_FR.obj" />
+    <mesh name="RL_mesh" file="wheel_RL.obj" />
+    <mesh name="RR_mesh" file="wheel_RR.obj" />
+    <material name="f1_blue" rgba="0.035 0.12 0.55 1" specular="0.65" shininess="0.65" />
+    <material name="f1_white" rgba="0.92 0.94 0.98 1" specular="0.45" shininess="0.5" />
+    <material name="f1_cyan" rgba="0.02 0.65 0.85 1" specular="0.55" shininess="0.55" />
+    <material name="f1_black" rgba="0.025 0.025 0.03 1" specular="0.15" shininess="0.1" />
+    <material name="f1_metal" rgba="0.65 0.68 0.72 1" specular="0.8" shininess="0.75" />
+    <material name="ground_material" rgba="0.40 0.43 0.45 1"/>
+    <mesh name="f1color_chassis_000" file="visual_parts/chassis_000_carbon.obj" />
+    <mesh name="f1color_chassis_001" file="visual_parts/chassis_001_carbon_body.obj" />
+    <mesh name="f1color_chassis_002" file="visual_parts/chassis_002_dark_body.obj" />
+    <mesh name="f1color_chassis_003" file="visual_parts/chassis_003_display.obj" />
+    <mesh name="f1color_chassis_004" file="visual_parts/chassis_004_exhaust_body.obj" />
+    <mesh name="f1color_chassis_005" file="visual_parts/chassis_005_glove.obj" />
+    <mesh name="f1color_chassis_006" file="visual_parts/chassis_006_helmet_body.obj" />
+    <mesh name="f1color_chassis_007" file="visual_parts/chassis_007_mirror_glass_body.obj" />
+    <mesh name="f1color_chassis_008" file="visual_parts/chassis_008_pad.obj" />
+    <mesh name="f1color_chassis_009" file="visual_parts/chassis_009_pad_body.obj" />
+    <mesh name="f1color_chassis_010" file="visual_parts/chassis_010_paint_accent.obj" />
+    <mesh name="f1color_chassis_011" file="visual_parts/chassis_011_paint_accent_body.obj" />
+    <mesh name="f1color_chassis_012" file="visual_parts/chassis_012_paint_primary.obj" />
+    <mesh name="f1color_chassis_013" file="visual_parts/chassis_013_paint_primary_body.obj" />
+    <mesh name="f1color_chassis_014" file="visual_parts/chassis_014_paint_secondary.obj" />
+    <mesh name="f1color_chassis_015" file="visual_parts/chassis_015_paint_secondary_body.obj" />
+    <mesh name="f1color_chassis_016" file="visual_parts/chassis_016_plank_body.obj" />
+    <mesh name="f1color_chassis_017" file="visual_parts/chassis_017_rain_light.obj" />
+    <mesh name="f1color_chassis_018" file="visual_parts/chassis_018_rain_light_body.obj" />
+    <mesh name="f1color_chassis_019" file="visual_parts/chassis_019_suit_body.obj" />
+    <mesh name="f1color_chassis_020" file="visual_parts/chassis_020_titanium.obj" />
+    <mesh name="f1color_chassis_021" file="visual_parts/chassis_021_titanium_body.obj" />
+    <mesh name="f1color_chassis_022" file="visual_parts/chassis_022_visor_body.obj" />
+    <mesh name="f1color_wheel_FL_000" file="visual_parts/wheel_FL_000_brake_duct.obj" />
+    <mesh name="f1color_wheel_FL_001" file="visual_parts/wheel_FL_001_rim.obj" />
+    <mesh name="f1color_wheel_FL_002" file="visual_parts/wheel_FL_002_tire.obj" />
+    <mesh name="f1color_wheel_FL_003" file="visual_parts/wheel_FL_003_wheel_cover.obj" />
+    <mesh name="f1color_wheel_FL_004" file="visual_parts/wheel_FL_004_wheel_nut.obj" />
+    <mesh name="f1color_wheel_FR_000" file="visual_parts/wheel_FR_000_brake_duct.obj" />
+    <mesh name="f1color_wheel_FR_001" file="visual_parts/wheel_FR_001_rim.obj" />
+    <mesh name="f1color_wheel_FR_002" file="visual_parts/wheel_FR_002_tire.obj" />
+    <mesh name="f1color_wheel_FR_003" file="visual_parts/wheel_FR_003_wheel_cover.obj" />
+    <mesh name="f1color_wheel_FR_004" file="visual_parts/wheel_FR_004_wheel_nut.obj" />
+    <mesh name="f1color_wheel_RL_000" file="visual_parts/wheel_RL_000_brake_duct.obj" />
+    <mesh name="f1color_wheel_RL_001" file="visual_parts/wheel_RL_001_rim.obj" />
+    <mesh name="f1color_wheel_RL_002" file="visual_parts/wheel_RL_002_tire.obj" />
+    <mesh name="f1color_wheel_RL_003" file="visual_parts/wheel_RL_003_wheel_cover.obj" />
+    <mesh name="f1color_wheel_RL_004" file="visual_parts/wheel_RL_004_wheel_nut.obj" />
+    <mesh name="f1color_wheel_RR_000" file="visual_parts/wheel_RR_000_brake_duct.obj" />
+    <mesh name="f1color_wheel_RR_001" file="visual_parts/wheel_RR_001_rim.obj" />
+    <mesh name="f1color_wheel_RR_002" file="visual_parts/wheel_RR_002_tire.obj" />
+    <mesh name="f1color_wheel_RR_003" file="visual_parts/wheel_RR_003_wheel_cover.obj" />
+    <mesh name="f1color_wheel_RR_004" file="visual_parts/wheel_RR_004_wheel_nut.obj" />
+    <!-- Bright daytime sky -->
+    <texture
+        type="skybox"
+        builtin="gradient"
+        rgb1="0.35 0.60 0.90"
+        rgb2="0.90 0.95 1.0"
+        width="512"
+        height="512"/>
+
+  </asset>
+  <worldbody>
+    
+<!-- Directional sunlight -->
+    <light
+        name="sun"
+        directional="true"
+        pos="30 -30 80"
+        dir="-0.35 0.25 -1"
+        diffuse="0.95 0.93 0.88"
+        specular="0.35 0.35 0.35"
+        castshadow="true"/>
+
+    <!-- Secondary fill light -->
+    <light
+        name="fill_light"
+        directional="true"
+        pos="-30 20 40"
+        dir="0.4 -0.2 -1"
+        diffuse="0.25 0.30 0.38"
+        specular="0.08 0.08 0.08"
+        castshadow="false"/>
+
+
+    <geom name="ground" type="plane" size="100 100 0.1" material="ground_material" friction="1.2 0.005 0.0001" />
+    <body name="chassis" pos="0 0 0.01">
+      <geom name="f1color_chassis_022" type="mesh" mesh="f1color_chassis_022" contype="0" conaffinity="0" rgba="0.01000 0.01200 0.01400 1.00000" />
+      <geom name="f1color_chassis_021" type="mesh" mesh="f1color_chassis_021" contype="0" conaffinity="0" rgba="0.36000 0.36000 0.37000 1.00000" />
+      <geom name="f1color_chassis_020" type="mesh" mesh="f1color_chassis_020" contype="0" conaffinity="0" rgba="0.36000 0.36000 0.37000 1.00000" />
+      <geom name="f1color_chassis_019" type="mesh" mesh="f1color_chassis_019" contype="0" conaffinity="0" rgba="0.01200 0.03000 0.14000 1.00000" />
+      <geom name="f1color_chassis_018" type="mesh" mesh="f1color_chassis_018" contype="0" conaffinity="0" rgba="0.40000 0.01000 0.01000 1.00000" />
+      <geom name="f1color_chassis_017" type="mesh" mesh="f1color_chassis_017" contype="0" conaffinity="0" rgba="0.40000 0.01000 0.01000 1.00000" />
+      <geom name="f1color_chassis_016" type="mesh" mesh="f1color_chassis_016" contype="0" conaffinity="0" rgba="0.20000 0.13000 0.06000 1.00000" />
+      <geom name="f1color_chassis_015" type="mesh" mesh="f1color_chassis_015" contype="0" conaffinity="0" rgba="0.78000 0.79000 0.80000 1.00000" />
+      <geom name="f1color_chassis_014" type="mesh" mesh="f1color_chassis_014" contype="0" conaffinity="0" rgba="0.78000 0.79000 0.80000 1.00000" />
+      <geom name="f1color_chassis_013" type="mesh" mesh="f1color_chassis_013" contype="0" conaffinity="0" rgba="0.00800 0.02600 0.15000 1.00000" />
+      <geom name="f1color_chassis_012" type="mesh" mesh="f1color_chassis_012" contype="0" conaffinity="0" rgba="0.00800 0.02600 0.15000 1.00000" />
+      <geom name="f1color_chassis_011" type="mesh" mesh="f1color_chassis_011" contype="0" conaffinity="0" rgba="0.00000 0.33000 0.62000 1.00000" />
+      <geom name="f1color_chassis_010" type="mesh" mesh="f1color_chassis_010" contype="0" conaffinity="0" rgba="0.00000 0.33000 0.62000 1.00000" />
+      <geom name="f1color_chassis_009" type="mesh" mesh="f1color_chassis_009" contype="0" conaffinity="0" rgba="0.04500 0.04800 0.05800 1.00000" />
+      <geom name="f1color_chassis_008" type="mesh" mesh="f1color_chassis_008" contype="0" conaffinity="0" rgba="0.04500 0.04800 0.05800 1.00000" />
+      <geom name="f1color_chassis_007" type="mesh" mesh="f1color_chassis_007" contype="0" conaffinity="0" rgba="0.75000 0.76000 0.78000 1.00000" />
+      <geom name="f1color_chassis_006" type="mesh" mesh="f1color_chassis_006" contype="0" conaffinity="0" rgba="0.80000 0.81000 0.82000 1.00000" />
+      <geom name="f1color_chassis_005" type="mesh" mesh="f1color_chassis_005" contype="0" conaffinity="0" rgba="0.02000 0.02000 0.02200 1.00000" />
+      <geom name="f1color_chassis_004" type="mesh" mesh="f1color_chassis_004" contype="0" conaffinity="0" rgba="0.42000 0.36000 0.30000 1.00000" />
+      <geom name="f1color_chassis_003" type="mesh" mesh="f1color_chassis_003" contype="0" conaffinity="0" rgba="0.00400 0.00600 0.00800 1.00000" />
+      <geom name="f1color_chassis_002" type="mesh" mesh="f1color_chassis_002" contype="0" conaffinity="0" rgba="0.01000 0.01000 0.01100 1.00000" />
+      <geom name="f1color_chassis_001" type="mesh" mesh="f1color_chassis_001" contype="0" conaffinity="0" rgba="0.80000 0.80000 0.80000 1.00000" />
+      <geom name="f1color_chassis_000" type="mesh" mesh="f1color_chassis_000" contype="0" conaffinity="0" rgba="0.80000 0.80000 0.80000 1.00000" />
+      <freejoint name="chassis_free" />
+      <inertial pos="0 0 0.49" mass="700" diaginertia="500 1800 1900" />
+      <geom name="chassis_collision" type="box" pos="0 0 0.49" size="1.75 0.6 0.20" mass="0" contype="1" conaffinity="1" rgba="0 0 0 0" />
+      <body name="FL_steer" pos="1.8 0.83 0.36">
+        <inertial pos="0 0 0" mass="1" diaginertia="0.01 0.01 0.01" />
+        <joint name="steer_FL" type="hinge" axis="0 0 1" limited="true" range="-0.5 0.5" damping="50" />
+        <body name="FL_wheel">
+          <geom name="f1color_wheel_FL_004" type="mesh" mesh="f1color_wheel_FL_004" contype="0" conaffinity="0" rgba="0.55000 0.56000 0.58000 1.00000" />
+          <geom name="f1color_wheel_FL_003" type="mesh" mesh="f1color_wheel_FL_003" contype="0" conaffinity="0" rgba="0.80000 0.80000 0.80000 1.00000" />
+          <geom name="f1color_wheel_FL_002" type="mesh" mesh="f1color_wheel_FL_002" contype="0" conaffinity="0" rgba="0.03000 0.03000 0.03200 1.00000" />
+          <geom name="f1color_wheel_FL_001" type="mesh" mesh="f1color_wheel_FL_001" contype="0" conaffinity="0" rgba="0.06000 0.06000 0.06500 1.00000" />
+          <geom name="f1color_wheel_FL_000" type="mesh" mesh="f1color_wheel_FL_000" contype="0" conaffinity="0" rgba="0.02000 0.02000 0.02200 1.00000" />
+          <joint name="spin_FL" type="hinge" axis="0 1 0" damping="0.1" />
+          <inertial pos="0 0 0" mass="10" diaginertia="0.8 0.8 0.8" />
+          <geom name="FL_collision" type="cylinder" size="0.3605 0.153" quat="0.70710678 0.70710678 0 0" mass="0" contype="1" conaffinity="1" friction="1.4 0.005 0.0001" rgba="0 0 0 0" />
+        </body>
+      </body>
+      <body name="FR_steer" pos="1.8 -0.83 0.36">
+        <inertial pos="0 0 0" mass="1" diaginertia="0.01 0.01 0.01" />
+        <joint name="steer_FR" type="hinge" axis="0 0 1" limited="true" range="-0.5 0.5" damping="50" />
+        <body name="FR_wheel">
+          <geom name="f1color_wheel_FR_004" type="mesh" mesh="f1color_wheel_FR_004" contype="0" conaffinity="0" rgba="0.55000 0.56000 0.58000 1.00000" />
+          <geom name="f1color_wheel_FR_003" type="mesh" mesh="f1color_wheel_FR_003" contype="0" conaffinity="0" rgba="0.80000 0.80000 0.80000 1.00000" />
+          <geom name="f1color_wheel_FR_002" type="mesh" mesh="f1color_wheel_FR_002" contype="0" conaffinity="0" rgba="0.03000 0.03000 0.03200 1.00000" />
+          <geom name="f1color_wheel_FR_001" type="mesh" mesh="f1color_wheel_FR_001" contype="0" conaffinity="0" rgba="0.06000 0.06000 0.06500 1.00000" />
+          <geom name="f1color_wheel_FR_000" type="mesh" mesh="f1color_wheel_FR_000" contype="0" conaffinity="0" rgba="0.02000 0.02000 0.02200 1.00000" />
+          <joint name="spin_FR" type="hinge" axis="0 1 0" damping="0.1" />
+          <inertial pos="0 0 0" mass="10" diaginertia="0.8 0.8 0.8" />
+          <geom name="FR_collision" type="cylinder" size="0.3605 0.153" quat="0.70710678 0.70710678 0 0" mass="0" contype="1" conaffinity="1" friction="1.4 0.005 0.0001" rgba="0 0 0 0" />
+        </body>
+      </body>
+      <body name="RL_wheel" pos="-1.8 0.8 0.36">
+        <geom name="f1color_wheel_RL_004" type="mesh" mesh="f1color_wheel_RL_004" contype="0" conaffinity="0" rgba="0.55000 0.56000 0.58000 1.00000" />
+        <geom name="f1color_wheel_RL_003" type="mesh" mesh="f1color_wheel_RL_003" contype="0" conaffinity="0" rgba="0.80000 0.80000 0.80000 1.00000" />
+        <geom name="f1color_wheel_RL_002" type="mesh" mesh="f1color_wheel_RL_002" contype="0" conaffinity="0" rgba="0.03000 0.03000 0.03200 1.00000" />
+        <geom name="f1color_wheel_RL_001" type="mesh" mesh="f1color_wheel_RL_001" contype="0" conaffinity="0" rgba="0.06000 0.06000 0.06500 1.00000" />
+        <geom name="f1color_wheel_RL_000" type="mesh" mesh="f1color_wheel_RL_000" contype="0" conaffinity="0" rgba="0.02000 0.02000 0.02200 1.00000" />
+        <joint name="spin_RL" type="hinge" axis="0 1 0" damping="0.1" />
+        <inertial pos="0 0 0" mass="12" diaginertia="1 1 1" />
+        <geom name="RL_collision" type="cylinder" size="0.3605 0.203" quat="0.70710678 0.70710678 0 0" mass="0" contype="1" conaffinity="1" friction="1.4 0.005 0.0001" rgba="0 0 0 0" />
+      </body>
+      <body name="RR_wheel" pos="-1.8 -0.8 0.36">
+        <geom name="f1color_wheel_RR_004" type="mesh" mesh="f1color_wheel_RR_004" contype="0" conaffinity="0" rgba="0.55000 0.56000 0.58000 1.00000" />
+        <geom name="f1color_wheel_RR_003" type="mesh" mesh="f1color_wheel_RR_003" contype="0" conaffinity="0" rgba="0.80000 0.80000 0.80000 1.00000" />
+        <geom name="f1color_wheel_RR_002" type="mesh" mesh="f1color_wheel_RR_002" contype="0" conaffinity="0" rgba="0.03000 0.03000 0.03200 1.00000" />
+        <geom name="f1color_wheel_RR_001" type="mesh" mesh="f1color_wheel_RR_001" contype="0" conaffinity="0" rgba="0.06000 0.06000 0.06500 1.00000" />
+        <geom name="f1color_wheel_RR_000" type="mesh" mesh="f1color_wheel_RR_000" contype="0" conaffinity="0" rgba="0.02000 0.02000 0.02200 1.00000" />
+        <joint name="spin_RR" type="hinge" axis="0 1 0" damping="0.1" />
+        <inertial pos="0 0 0" mass="12" diaginertia="1 1 1" />
+        <geom name="RR_collision" type="cylinder" size="0.3605 0.203" quat="0.70710678 0.70710678 0 0" mass="0" contype="1" conaffinity="1" friction="1.4 0.005 0.0001" rgba="0 0 0 0" />
+      </body>
+    </body>
+  </worldbody>
+  <contact>
+    <exclude body1="chassis" body2="FL_wheel"/>
+    <exclude body1="chassis" body2="FR_wheel"/>
+    <exclude body1="chassis" body2="RL_wheel"/>
+    <exclude body1="chassis" body2="RR_wheel"/>
+</contact>
+  <actuator>
+    <position name="steering_FL" joint="steer_FL" kp="500" ctrlrange="-0.5 0.5" ctrllimited="true" forcerange="-1500 1500" forcelimited="true" />
+    <position name="steering_FR" joint="steer_FR" kp="500" ctrlrange="-0.5 0.5" ctrllimited="true" forcerange="-1500 1500" forcelimited="true" />
+    <motor name="rear_drive_RL" joint="spin_RL" gear="1" ctrlrange="-500 500" ctrllimited="true" />
+    <motor name="rear_drive_RR" joint="spin_RR" gear="1" ctrlrange="-500 500" ctrllimited="true" />
+  </actuator>
+</mujoco>

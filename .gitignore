@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+
+# Build files
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+compile_commands.json
+
+# IDE settings
+.vscode/
+.idea/
+
+# MuJoCo logs
+MUJOCO_LOG.TXT
+*.log
+
+# Compiled files
+*.o
+*.a
+*.dylib
+*.so
+
+# Python temporary files
+__pycache__/
+*.pyc
+
+# Environment and secrets
+.env
+.env.*
+!.env.example

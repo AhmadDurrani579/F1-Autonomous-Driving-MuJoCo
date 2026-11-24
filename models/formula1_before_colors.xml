@@ -1,0 +1,367 @@
+
+<mujoco model="Formula1Dynamic">
+
+  <compiler
+      angle="radian"
+      meshdir="../assets/f1_car"/>
+
+  <option
+      timestep="0.002"
+      gravity="0 0 -9.81"
+      integrator="implicitfast"/>
+
+  <!-- Default contact parameters -->
+  <default>
+    <joint
+        damping="0.5"
+        armature="0.01"/>
+
+    <geom
+        condim="3"
+        friction="1.2 0.005 0.0001"
+        solref="0.02 1"
+        solimp="0.9 0.95 0.001"/>
+  </default>
+
+  <!-- ========================== -->
+  <!-- ASSETS                     -->
+  <!-- ========================== -->
+
+  <asset>
+
+    <mesh name="chassis_mesh"
+          file="chassis.obj"/>
+
+    <mesh name="FL_mesh"
+          file="wheel_FL.obj"/>
+
+    <mesh name="FR_mesh"
+          file="wheel_FR.obj"/>
+
+    <mesh name="RL_mesh"
+          file="wheel_RL.obj"/>
+
+    <mesh name="RR_mesh"
+          file="wheel_RR.obj"/>
+
+
+    <!-- Formula 1 livery materials -->
+
+    <material name="f1_blue"
+              rgba="0.035 0.12 0.55 1"
+              specular="0.65"
+              shininess="0.65"/>
+
+    <material name="f1_white"
+              rgba="0.92 0.94 0.98 1"
+              specular="0.45"
+              shininess="0.5"/>
+
+    <material name="f1_cyan"
+              rgba="0.02 0.65 0.85 1"
+              specular="0.55"
+              shininess="0.55"/>
+
+    <material name="f1_black"
+              rgba="0.025 0.025 0.03 1"
+              specular="0.15"
+              shininess="0.1"/>
+
+    <material name="f1_metal"
+              rgba="0.65 0.68 0.72 1"
+              specular="0.8"
+              shininess="0.75"/>
+
+    <material name="ground_material"
+              rgba="0.22 0.24 0.27 1"/>
+
+  </asset>
+
+  <!-- ========================== -->
+  <!-- WORLD                      -->
+  <!-- ========================== -->
+
+  <worldbody>
+
+    <light
+        name="sun"
+        pos="0 0 10"
+        dir="0 0 -1"/>
+
+    <geom
+        name="ground"
+        type="plane"
+        size="100 100 0.1"
+        material="ground_material"
+        friction="1.2 0.005 0.0001"/>
+
+    <!-- ======================== -->
+    <!-- MAIN CHASSIS             -->
+    <!-- ======================== -->
+
+    <body name="chassis" pos="0 0 0.01">
+
+      <freejoint name="chassis_free"/>
+
+      <inertial
+          pos="0 0 0.49"
+          mass="700"
+          diaginertia="500 1800 1900"/>
+
+      <!-- Visual mesh -->
+      <geom name="chassis_visual"
+        type="mesh"
+        mesh="chassis_mesh"
+        material="f1_blue"
+        contype="0"
+        conaffinity="0"/>
+
+      <!-- Invisible collision geometry -->
+      <geom
+          name="chassis_collision"
+          type="box"
+          pos="0 0 0.49"
+          size="1.75 0.6 0.20"
+          mass="0"
+          contype="1"
+          conaffinity="1"
+          rgba="0 0 0 0"/>
+
+      <!-- ====================== -->
+      <!-- FRONT LEFT STEERING    -->
+      <!-- ====================== -->
+
+      <body
+          name="FL_steer"
+          pos="1.8 0.83 0.36">
+
+        <inertial
+            pos="0 0 0"
+            mass="1"
+            diaginertia="0.01 0.01 0.01"/>
+
+        <joint
+            name="steer_FL"
+            type="hinge"
+            axis="0 0 1"
+            limited="true"
+            range="-0.5 0.5"
+            damping="5"/>
+
+        <body name="FL_wheel">
+
+          <joint
+              name="spin_FL"
+              type="hinge"
+              axis="0 1 0"
+              damping="0.1"/>
+
+          <inertial
+              pos="0 0 0"
+              mass="10"
+              diaginertia="0.8 0.8 0.8"/>
+
+          <!-- Visual tyre -->
+          <geom name="FL_visual"
+            type="mesh"
+            mesh="FL_mesh"
+            material="f1_black"
+            contype="0"
+            conaffinity="0"/>
+
+          <!-- Invisible tyre collision -->
+          <geom
+              name="FL_collision"
+              type="cylinder"
+              size="0.3605 0.153"
+              quat="0.70710678 0.70710678 0 0"
+              mass="0"
+              contype="1"
+              conaffinity="1"
+              friction="1.4 0.005 0.0001"
+              rgba="0 0 0 0"/>
+
+        </body>
+      </body>
+
+      <!-- ====================== -->
+      <!-- FRONT RIGHT STEERING   -->
+      <!-- ====================== -->
+
+      <body
+          name="FR_steer"
+          pos="1.8 -0.83 0.36">
+
+        <inertial
+            pos="0 0 0"
+            mass="1"
+            diaginertia="0.01 0.01 0.01"/>
+
+        <joint
+            name="steer_FR"
+            type="hinge"
+            axis="0 0 1"
+            limited="true"
+            range="-0.5 0.5"
+            damping="5"/>
+
+        <body name="FR_wheel">
+
+          <joint
+              name="spin_FR"
+              type="hinge"
+              axis="0 1 0"
+              damping="0.1"/>
+
+          <inertial
+              pos="0 0 0"
+              mass="10"
+              diaginertia="0.8 0.8 0.8"/>
+
+          <geom name="FR_visual"
+            type="mesh"
+            mesh="FR_mesh"
+            material="f1_black"
+            contype="0"
+            conaffinity="0"/>
+
+
+          <geom
+              name="FR_collision"
+              type="cylinder"
+              size="0.3605 0.153"
+              quat="0.70710678 0.70710678 0 0"
+              mass="0"
+              contype="1"
+              conaffinity="1"
+              friction="1.4 0.005 0.0001"
+              rgba="0 0 0 0"/>
+
+        </body>
+      </body>
+
+      <!-- ====================== -->
+      <!-- REAR LEFT WHEEL        -->
+      <!-- ====================== -->
+
+      <body
+          name="RL_wheel"
+          pos="-1.8 0.8 0.36">
+
+        <joint
+            name="spin_RL"
+            type="hinge"
+            axis="0 1 0"
+            damping="0.1"/>
+
+        <inertial
+            pos="0 0 0"
+            mass="12"
+            diaginertia="1 1 1"/>
+
+        <geom name="RL_visual"
+          type="mesh"
+          mesh="RL_mesh"
+          material="f1_black"
+          contype="0"
+          conaffinity="0"/>
+
+        <geom
+            name="RL_collision"
+            type="cylinder"
+            size="0.3605 0.203"
+            quat="0.70710678 0.70710678 0 0"
+            mass="0"
+            contype="1"
+            conaffinity="1"
+            friction="1.4 0.005 0.0001"
+            rgba="0 0 0 0"/>
+
+      </body>
+
+      <!-- ====================== -->
+      <!-- REAR RIGHT WHEEL       -->
+      <!-- ====================== -->
+
+      <body
+          name="RR_wheel"
+          pos="-1.8 -0.8 0.36">
+
+        <joint
+            name="spin_RR"
+            type="hinge"
+            axis="0 1 0"
+            damping="0.1"/>
+
+        <inertial
+            pos="0 0 0"
+            mass="12"
+            diaginertia="1 1 1"/>
+
+       <geom name="RR_visual"
+          type="mesh"
+          mesh="RR_mesh"
+          material="f1_black"
+          contype="0"
+          conaffinity="0"/>
+
+        <geom
+            name="RR_collision"
+            type="cylinder"
+            size="0.3605 0.203"
+            quat="0.70710678 0.70710678 0 0"
+            mass="0"
+            contype="1"
+            conaffinity="1"
+            friction="1.4 0.005 0.0001"
+            rgba="0 0 0 0"/>
+
+      </body>
+
+    </body>
+
+  </worldbody>
+
+  <!-- ========================== -->
+  <!-- ACTUATORS                  -->
+  <!-- ========================== -->
+
+  <actuator>
+
+    <!-- Front steering actuators -->
+    <position
+        name="steering_FL"
+        joint="steer_FL"
+        kp="500"
+        ctrlrange="-0.5 0.5"
+        ctrllimited="true"
+        forcerange="-1500 1500"
+        forcelimited="true"/>
+
+    <position
+        name="steering_FR"
+        joint="steer_FR"
+        kp="500"
+        ctrlrange="-0.5 0.5"
+        ctrllimited="true"
+        forcerange="-1500 1500"
+        forcelimited="true"/>
+
+    <!-- Rear wheel torque actuators -->
+    <motor
+        name="rear_drive_RL"
+        joint="spin_RL"
+        gear="1"
+        ctrlrange="-500 500"
+        ctrllimited="true"/>
+
+    <motor
+        name="rear_drive_RR"
+        joint="spin_RR"
+        gear="1"
+        ctrlrange="-500 500"
+        ctrllimited="true"/>
+
+  </actuator>
+
+</mujoco>

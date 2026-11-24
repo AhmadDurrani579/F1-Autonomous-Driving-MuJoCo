@@ -1,0 +1,429 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="F1_Custom_Circuit">
+  <compiler angle="radian" meshdir="../assets/f1_car" />
+  <option timestep="0.002" gravity="0 0 -9.81" integrator="implicitfast" />
+  <!-- Daylight and camera lighting -->
+  <visual>
+    <headlight ambient="0.40 0.40 0.40" diffuse="0.65 0.65 0.65" specular="0.20 0.20 0.20" />
+    <global azimuth="135" elevation="-25" />
+  </visual>
+  <default>
+    <joint damping="0.5" armature="0.01" />
+    <geom condim="3" friction="1.2 0.005 0.0001" solref="0.02 1" solimp="0.9 0.95 0.001" />
+  </default>
+  <asset>
+    <mesh name="chassis_mesh" file="chassis.obj" />
+    <mesh name="FL_mesh" file="wheel_FL.obj" />
+    <mesh name="FR_mesh" file="wheel_FR.obj" />
+    <mesh name="RL_mesh" file="wheel_RL.obj" />
+    <mesh name="RR_mesh" file="wheel_RR.obj" />
+    <material name="f1_blue" rgba="0.035 0.12 0.55 1" specular="0.65" shininess="0.65" />
+    <material name="f1_white" rgba="0.92 0.94 0.98 1" specular="0.45" shininess="0.5" />
+    <material name="f1_cyan" rgba="0.02 0.65 0.85 1" specular="0.55" shininess="0.55" />
+    <material name="f1_black" rgba="0.025 0.025 0.03 1" specular="0.15" shininess="0.1" />
+    <material name="f1_metal" rgba="0.65 0.68 0.72 1" specular="0.8" shininess="0.75" />
+    <material name="ground_material" rgba="0.40 0.43 0.45 1" />
+    <mesh name="f1color_chassis_000" file="visual_parts/chassis_000_carbon.obj" />
+    <mesh name="f1color_chassis_001" file="visual_parts/chassis_001_carbon_body.obj" />
+    <mesh name="f1color_chassis_002" file="visual_parts/chassis_002_dark_body.obj" />
+    <mesh name="f1color_chassis_003" file="visual_parts/chassis_003_display.obj" />
+    <mesh name="f1color_chassis_004" file="visual_parts/chassis_004_exhaust_body.obj" />
+    <mesh name="f1color_chassis_005" file="visual_parts/chassis_005_glove.obj" />
+    <mesh name="f1color_chassis_006" file="visual_parts/chassis_006_helmet_body.obj" />
+    <mesh name="f1color_chassis_007" file="visual_parts/chassis_007_mirror_glass_body.obj" />
+    <mesh name="f1color_chassis_008" file="visual_parts/chassis_008_pad.obj" />
+    <mesh name="f1color_chassis_009" file="visual_parts/chassis_009_pad_body.obj" />
+    <mesh name="f1color_chassis_010" file="visual_parts/chassis_010_paint_accent.obj" />
+    <mesh name="f1color_chassis_011" file="visual_parts/chassis_011_paint_accent_body.obj" />
+    <mesh name="f1color_chassis_012" file="visual_parts/chassis_012_paint_primary.obj" />
+    <mesh name="f1color_chassis_013" file="visual_parts/chassis_013_paint_primary_body.obj" />
+    <mesh name="f1color_chassis_014" file="visual_parts/chassis_014_paint_secondary.obj" />
+    <mesh name="f1color_chassis_015" file="visual_parts/chassis_015_paint_secondary_body.obj" />
+    <mesh name="f1color_chassis_016" file="visual_parts/chassis_016_plank_body.obj" />
+    <mesh name="f1color_chassis_017" file="visual_parts/chassis_017_rain_light.obj" />
+    <mesh name="f1color_chassis_018" file="visual_parts/chassis_018_rain_light_body.obj" />
+    <mesh name="f1color_chassis_019" file="visual_parts/chassis_019_suit_body.obj" />
+    <mesh name="f1color_chassis_020" file="visual_parts/chassis_020_titanium.obj" />
+    <mesh name="f1color_chassis_021" file="visual_parts/chassis_021_titanium_body.obj" />
+    <mesh name="f1color_chassis_022" file="visual_parts/chassis_022_visor_body.obj" />
+    <mesh name="f1color_wheel_FL_000" file="visual_parts/wheel_FL_000_brake_duct.obj" />
+    <mesh name="f1color_wheel_FL_001" file="visual_parts/wheel_FL_001_rim.obj" />
+    <mesh name="f1color_wheel_FL_002" file="visual_parts/wheel_FL_002_tire.obj" />
+    <mesh name="f1color_wheel_FL_003" file="visual_parts/wheel_FL_003_wheel_cover.obj" />
+    <mesh name="f1color_wheel_FL_004" file="visual_parts/wheel_FL_004_wheel_nut.obj" />
+    <mesh name="f1color_wheel_FR_000" file="visual_parts/wheel_FR_000_brake_duct.obj" />
+    <mesh name="f1color_wheel_FR_001" file="visual_parts/wheel_FR_001_rim.obj" />
+    <mesh name="f1color_wheel_FR_002" file="visual_parts/wheel_FR_002_tire.obj" />
+    <mesh name="f1color_wheel_FR_003" file="visual_parts/wheel_FR_003_wheel_cover.obj" />
+    <mesh name="f1color_wheel_FR_004" file="visual_parts/wheel_FR_004_wheel_nut.obj" />
+    <mesh name="f1color_wheel_RL_000" file="visual_parts/wheel_RL_000_brake_duct.obj" />
+    <mesh name="f1color_wheel_RL_001" file="visual_parts/wheel_RL_001_rim.obj" />
+    <mesh name="f1color_wheel_RL_002" file="visual_parts/wheel_RL_002_tire.obj" />
+    <mesh name="f1color_wheel_RL_003" file="visual_parts/wheel_RL_003_wheel_cover.obj" />
+    <mesh name="f1color_wheel_RL_004" file="visual_parts/wheel_RL_004_wheel_nut.obj" />
+    <mesh name="f1color_wheel_RR_000" file="visual_parts/wheel_RR_000_brake_duct.obj" />
+    <mesh name="f1color_wheel_RR_001" file="visual_parts/wheel_RR_001_rim.obj" />
+    <mesh name="f1color_wheel_RR_002" file="visual_parts/wheel_RR_002_tire.obj" />
+    <mesh name="f1color_wheel_RR_003" file="visual_parts/wheel_RR_003_wheel_cover.obj" />
+    <mesh name="f1color_wheel_RR_004" file="visual_parts/wheel_RR_004_wheel_nut.obj" />
+    <!-- Bright daytime sky -->
+    <texture type="skybox" builtin="gradient" rgb1="0.35 0.60 0.90" rgb2="0.90 0.95 1.0" width="512" height="512" />
+    <material name="custom_asphalt" rgba="0.19 0.21 0.23 1" />
+    <material name="custom_kerb_red" rgba="0.80 0.09 0.08 1" />
+    <material name="custom_kerb_white" rgba="0.96 0.96 0.93 1" />
+    <material name="custom_gravel" rgba="0.58 0.48 0.33 1" />
+    <material name="custom_barrier" rgba="0.77 0.81 0.84 1" />
+    <material name="custom_concrete" rgba="0.63 0.67 0.70 1" />
+    <material name="custom_roof" rgba="0.13 0.19 0.25 1" />
+    <material name="custom_window" rgba="0.27 0.48 0.62 1" />
+    <material name="custom_tree" rgba="0.09 0.29 0.12 1" />
+    <material name="custom_trunk" rgba="0.31 0.21 0.14 1" />
+    <material name="custom_yellow" rgba="0.95 0.75 0.15 1" />
+    <mesh name="custom_road" file="custom_track/road.obj" />
+    <mesh name="custom_kerb_left" file="custom_track/kerb_left.obj" />
+    <mesh name="custom_kerb_right" file="custom_track/kerb_right.obj" />
+  </asset>
+  <worldbody>
+    <!-- Directional sunlight -->
+    <light name="sun" directional="true" pos="30 -30 80" dir="-0.35 0.25 -1" diffuse="0.95 0.93 0.88" specular="0.35 0.35 0.35" castshadow="true" />
+    <!-- Secondary fill light -->
+    <light name="fill_light" directional="true" pos="-30 20 40" dir="0.4 -0.2 -1" diffuse="0.25 0.30 0.38" specular="0.08 0.08 0.08" castshadow="false" />
+    <geom name="ground" type="plane" size="250 250 0.1" friction="1.2 0.005 0.0001" rgba="0.20 0.42 0.19 1" />
+    <body name="chassis" pos="-53.000000 -62.000000 0.01" quat="0.99128037 0 0 -0.13176960">
+      <geom name="f1color_chassis_022" type="mesh" mesh="f1color_chassis_022" contype="0" conaffinity="0" rgba="0.01000 0.01200 0.01400 1.00000" />
+      <geom name="f1color_chassis_021" type="mesh" mesh="f1color_chassis_021" contype="0" conaffinity="0" rgba="0.36000 0.36000 0.37000 1.00000" />
+      <geom name="f1color_chassis_020" type="mesh" mesh="f1color_chassis_020" contype="0" conaffinity="0" rgba="0.36000 0.36000 0.37000 1.00000" />
+      <geom name="f1color_chassis_019" type="mesh" mesh="f1color_chassis_019" contype="0" conaffinity="0" rgba="0.01200 0.03000 0.14000 1.00000" />
+      <geom name="f1color_chassis_018" type="mesh" mesh="f1color_chassis_018" contype="0" conaffinity="0" rgba="0.40000 0.01000 0.01000 1.00000" />
+      <geom name="f1color_chassis_017" type="mesh" mesh="f1color_chassis_017" contype="0" conaffinity="0" rgba="0.40000 0.01000 0.01000 1.00000" />
+      <geom name="f1color_chassis_016" type="mesh" mesh="f1color_chassis_016" contype="0" conaffinity="0" rgba="0.20000 0.13000 0.06000 1.00000" />
+      <geom name="f1color_chassis_015" type="mesh" mesh="f1color_chassis_015" contype="0" conaffinity="0" rgba="0.78000 0.79000 0.80000 1.00000" />
+      <geom name="f1color_chassis_014" type="mesh" mesh="f1color_chassis_014" contype="0" conaffinity="0" rgba="0.78000 0.79000 0.80000 1.00000" />
+      <geom name="f1color_chassis_013" type="mesh" mesh="f1color_chassis_013" contype="0" conaffinity="0" rgba="0.00800 0.02600 0.15000 1.00000" />
+      <geom name="f1color_chassis_012" type="mesh" mesh="f1color_chassis_012" contype="0" conaffinity="0" rgba="0.00800 0.02600 0.15000 1.00000" />
+      <geom name="f1color_chassis_011" type="mesh" mesh="f1color_chassis_011" contype="0" conaffinity="0" rgba="0.00000 0.33000 0.62000 1.00000" />
+      <geom name="f1color_chassis_010" type="mesh" mesh="f1color_chassis_010" contype="0" conaffinity="0" rgba="0.00000 0.33000 0.62000 1.00000" />
+      <geom name="f1color_chassis_009" type="mesh" mesh="f1color_chassis_009" contype="0" conaffinity="0" rgba="0.04500 0.04800 0.05800 1.00000" />
+      <geom name="f1color_chassis_008" type="mesh" mesh="f1color_chassis_008" contype="0" conaffinity="0" rgba="0.04500 0.04800 0.05800 1.00000" />
+      <geom name="f1color_chassis_007" type="mesh" mesh="f1color_chassis_007" contype="0" conaffinity="0" rgba="0.75000 0.76000 0.78000 1.00000" />
+      <geom name="f1color_chassis_006" type="mesh" mesh="f1color_chassis_006" contype="0" conaffinity="0" rgba="0.80000 0.81000 0.82000 1.00000" />
+      <geom name="f1color_chassis_005" type="mesh" mesh="f1color_chassis_005" contype="0" conaffinity="0" rgba="0.02000 0.02000 0.02200 1.00000" />
+      <geom name="f1color_chassis_004" type="mesh" mesh="f1color_chassis_004" contype="0" conaffinity="0" rgba="0.42000 0.36000 0.30000 1.00000" />
+      <geom name="f1color_chassis_003" type="mesh" mesh="f1color_chassis_003" contype="0" conaffinity="0" rgba="0.00400 0.00600 0.00800 1.00000" />
+      <geom name="f1color_chassis_002" type="mesh" mesh="f1color_chassis_002" contype="0" conaffinity="0" rgba="0.01000 0.01000 0.01100 1.00000" />
+      <geom name="f1color_chassis_001" type="mesh" mesh="f1color_chassis_001" contype="0" conaffinity="0" rgba="0.80000 0.80000 0.80000 1.00000" />
+      <geom name="f1color_chassis_000" type="mesh" mesh="f1color_chassis_000" contype="0" conaffinity="0" rgba="0.80000 0.80000 0.80000 1.00000" />
+      <freejoint name="chassis_free" />
+      <inertial pos="0 0 0.49" mass="700" diaginertia="500 1800 1900" />
+      <geom name="chassis_collision" type="box" pos="0 0 0.49" size="1.75 0.6 0.20" mass="0" contype="1" conaffinity="1" rgba="0 0 0 0" />
+      <body name="FL_steer" pos="1.8 0.83 0.36">
+        <inertial pos="0 0 0" mass="1" diaginertia="0.01 0.01 0.01" />
+        <joint name="steer_FL" type="hinge" axis="0 0 1" limited="true" range="-0.5 0.5" damping="50" />
+        <body name="FL_wheel">
+          <geom name="f1color_wheel_FL_004" type="mesh" mesh="f1color_wheel_FL_004" contype="0" conaffinity="0" rgba="0.55000 0.56000 0.58000 1.00000" />
+          <geom name="f1color_wheel_FL_003" type="mesh" mesh="f1color_wheel_FL_003" contype="0" conaffinity="0" rgba="0.80000 0.80000 0.80000 1.00000" />
+          <geom name="f1color_wheel_FL_002" type="mesh" mesh="f1color_wheel_FL_002" contype="0" conaffinity="0" rgba="0.03000 0.03000 0.03200 1.00000" />
+          <geom name="f1color_wheel_FL_001" type="mesh" mesh="f1color_wheel_FL_001" contype="0" conaffinity="0" rgba="0.06000 0.06000 0.06500 1.00000" />
+          <geom name="f1color_wheel_FL_000" type="mesh" mesh="f1color_wheel_FL_000" contype="0" conaffinity="0" rgba="0.02000 0.02000 0.02200 1.00000" />
+          <joint name="spin_FL" type="hinge" axis="0 1 0" damping="0.1" />
+          <inertial pos="0 0 0" mass="10" diaginertia="0.8 0.8 0.8" />
+          <geom name="FL_collision" type="cylinder" size="0.3605 0.153" quat="0.70710678 0.70710678 0 0" mass="0" contype="1" conaffinity="1" friction="1.4 0.005 0.0001" rgba="0 0 0 0" />
+        </body>
+      </body>
+      <body name="FR_steer" pos="1.8 -0.83 0.36">
+        <inertial pos="0 0 0" mass="1" diaginertia="0.01 0.01 0.01" />
+        <joint name="steer_FR" type="hinge" axis="0 0 1" limited="true" range="-0.5 0.5" damping="50" />
+        <body name="FR_wheel">
+          <geom name="f1color_wheel_FR_004" type="mesh" mesh="f1color_wheel_FR_004" contype="0" conaffinity="0" rgba="0.55000 0.56000 0.58000 1.00000" />
+          <geom name="f1color_wheel_FR_003" type="mesh" mesh="f1color_wheel_FR_003" contype="0" conaffinity="0" rgba="0.80000 0.80000 0.80000 1.00000" />
+          <geom name="f1color_wheel_FR_002" type="mesh" mesh="f1color_wheel_FR_002" contype="0" conaffinity="0" rgba="0.03000 0.03000 0.03200 1.00000" />
+          <geom name="f1color_wheel_FR_001" type="mesh" mesh="f1color_wheel_FR_001" contype="0" conaffinity="0" rgba="0.06000 0.06000 0.06500 1.00000" />
+          <geom name="f1color_wheel_FR_000" type="mesh" mesh="f1color_wheel_FR_000" contype="0" conaffinity="0" rgba="0.02000 0.02000 0.02200 1.00000" />
+          <joint name="spin_FR" type="hinge" axis="0 1 0" damping="0.1" />
+          <inertial pos="0 0 0" mass="10" diaginertia="0.8 0.8 0.8" />
+          <geom name="FR_collision" type="cylinder" size="0.3605 0.153" quat="0.70710678 0.70710678 0 0" mass="0" contype="1" conaffinity="1" friction="1.4 0.005 0.0001" rgba="0 0 0 0" />
+        </body>
+      </body>
+      <body name="RL_wheel" pos="-1.8 0.8 0.36">
+        <geom name="f1color_wheel_RL_004" type="mesh" mesh="f1color_wheel_RL_004" contype="0" conaffinity="0" rgba="0.55000 0.56000 0.58000 1.00000" />
+        <geom name="f1color_wheel_RL_003" type="mesh" mesh="f1color_wheel_RL_003" contype="0" conaffinity="0" rgba="0.80000 0.80000 0.80000 1.00000" />
+        <geom name="f1color_wheel_RL_002" type="mesh" mesh="f1color_wheel_RL_002" contype="0" conaffinity="0" rgba="0.03000 0.03000 0.03200 1.00000" />
+        <geom name="f1color_wheel_RL_001" type="mesh" mesh="f1color_wheel_RL_001" contype="0" conaffinity="0" rgba="0.06000 0.06000 0.06500 1.00000" />
+        <geom name="f1color_wheel_RL_000" type="mesh" mesh="f1color_wheel_RL_000" contype="0" conaffinity="0" rgba="0.02000 0.02000 0.02200 1.00000" />
+        <joint name="spin_RL" type="hinge" axis="0 1 0" damping="0.1" />
+        <inertial pos="0 0 0" mass="12" diaginertia="1 1 1" />
+        <geom name="RL_collision" type="cylinder" size="0.3605 0.203" quat="0.70710678 0.70710678 0 0" mass="0" contype="1" conaffinity="1" friction="1.4 0.005 0.0001" rgba="0 0 0 0" />
+      </body>
+      <body name="RR_wheel" pos="-1.8 -0.8 0.36">
+        <geom name="f1color_wheel_RR_004" type="mesh" mesh="f1color_wheel_RR_004" contype="0" conaffinity="0" rgba="0.55000 0.56000 0.58000 1.00000" />
+        <geom name="f1color_wheel_RR_003" type="mesh" mesh="f1color_wheel_RR_003" contype="0" conaffinity="0" rgba="0.80000 0.80000 0.80000 1.00000" />
+        <geom name="f1color_wheel_RR_002" type="mesh" mesh="f1color_wheel_RR_002" contype="0" conaffinity="0" rgba="0.03000 0.03000 0.03200 1.00000" />
+        <geom name="f1color_wheel_RR_001" type="mesh" mesh="f1color_wheel_RR_001" contype="0" conaffinity="0" rgba="0.06000 0.06000 0.06500 1.00000" />
+        <geom name="f1color_wheel_RR_000" type="mesh" mesh="f1color_wheel_RR_000" contype="0" conaffinity="0" rgba="0.02000 0.02000 0.02200 1.00000" />
+        <joint name="spin_RR" type="hinge" axis="0 1 0" damping="0.1" />
+        <inertial pos="0 0 0" mass="12" diaginertia="1 1 1" />
+        <geom name="RR_collision" type="cylinder" size="0.3605 0.203" quat="0.70710678 0.70710678 0 0" mass="0" contype="1" conaffinity="1" friction="1.4 0.005 0.0001" rgba="0 0 0 0" />
+      </body>
+      <camera name="custom_onboard" pos="0.55 0 1.35" xyaxes="0 -1 0 0 0 1" fovy="85" />
+    </body>
+    <geom name="custom_road" type="mesh" mesh="custom_road" material="custom_asphalt" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_left" type="mesh" mesh="custom_kerb_left" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_right" type="mesh" mesh="custom_kerb_right" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_0" type="box" pos="-89.99384 -30.36115 0.029" size="1.9 0.32 0.002" euler="0 0 -0.8234628" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_10" type="box" pos="-75.15381 -43.27845 0.029" size="1.9 0.32 0.002" euler="0 0 -0.6201785" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_20" type="box" pos="-57.84047 -53.10868 0.029" size="1.9 0.32 0.002" euler="0 0 -0.3943939" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_30" type="box" pos="-41.14369 -56.89296 0.029" size="1.9 0.32 0.002" euler="0 0 -0.0453541" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_40" type="box" pos="-22.59617 -55.49510 0.029" size="1.9 0.32 0.002" euler="0 0 0.1695629" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_50" type="box" pos="-6.40919 -51.60673 0.029" size="1.9 0.32 0.002" euler="0 0 0.3859502" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_60" type="box" pos="5.75265 -43.67106 0.029" size="1.9 0.32 0.002" euler="0 0 0.6600615" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_70" type="box" pos="20.54071 -34.93420 0.029" size="1.9 0.32 0.002" euler="0 0 0.2778769" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_80" type="box" pos="37.61273 -36.18621 0.029" size="1.9 0.32 0.002" euler="0 0 -0.3520592" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_90" type="box" pos="51.27567 -42.96205 0.029" size="1.9 0.32 0.002" euler="0 0 -0.5019046" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_100" type="box" pos="65.18948 -50.13101 0.029" size="1.9 0.32 0.002" euler="0 0 -0.5336751" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_110" type="box" pos="80.29588 -59.56579 0.029" size="1.9 0.32 0.002" euler="0 0 -0.5169028" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_120" type="box" pos="90.35213 -63.20582 0.029" size="1.9 0.32 0.002" euler="0 0 0.0950686" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_130" type="box" pos="98.99498 -58.42285 0.029" size="1.9 0.32 0.002" euler="0 0 0.7195094" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_140" type="box" pos="107.71041 -48.04808 0.029" size="1.9 0.32 0.002" euler="0 0 1.0159603" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_150" type="box" pos="111.25695 -38.79366 0.029" size="1.9 0.32 0.002" euler="0 0 1.4232713" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_160" type="box" pos="110.92251 -28.14962 0.029" size="1.9 0.32 0.002" euler="0 0 1.7842691" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_170" type="box" pos="108.14822 -21.66725 0.029" size="1.9 0.32 0.002" euler="0 0 2.4470427" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_180" type="box" pos="98.78022 -18.43323 0.029" size="1.9 0.32 0.002" euler="0 0 2.8963160" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_190" type="box" pos="83.42906 -12.04994 0.029" size="1.9 0.32 0.002" euler="0 0 2.4558712" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_200" type="box" pos="75.04465 3.31084 0.029" size="1.9 0.32 0.002" euler="0 0 1.8152938" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_210" type="box" pos="72.21632 19.21861 0.029" size="1.9 0.32 0.002" euler="0 0 1.7387292" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_220" type="box" pos="68.90263 32.65903 0.029" size="1.9 0.32 0.002" euler="0 0 1.8147992" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_230" type="box" pos="65.69894 45.14471 0.029" size="1.9 0.32 0.002" euler="0 0 1.8927242" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_240" type="box" pos="61.19233 53.15574 0.029" size="1.9 0.32 0.002" euler="0 0 2.3599855" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_250" type="box" pos="52.51331 59.16009 0.029" size="1.9 0.32 0.002" euler="0 0 2.6932218" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_260" type="box" pos="39.76397 63.18986 0.029" size="1.9 0.32 0.002" euler="0 0 2.9474006" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_270" type="box" pos="20.90148 64.82344 0.029" size="1.9 0.32 0.002" euler="0 0 3.1408933" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_280" type="box" pos="-4.54634 63.71118 0.029" size="1.9 0.32 0.002" euler="0 0 -3.0696336" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_290" type="box" pos="-27.47105 61.88741 0.029" size="1.9 0.32 0.002" euler="0 0 -3.0684353" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_300" type="box" pos="-44.46768 60.53249 0.029" size="1.9 0.32 0.002" euler="0 0 -3.0267143" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_310" type="box" pos="-58.71664 57.60675 0.029" size="1.9 0.32 0.002" euler="0 0 -2.8323132" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_320" type="box" pos="-74.56571 50.88310 0.029" size="1.9 0.32 0.002" euler="0 0 -2.6699476" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_330" type="box" pos="-90.07370 41.38809 0.029" size="1.9 0.32 0.002" euler="0 0 -2.4989408" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_340" type="box" pos="-100.97963 30.85781 0.029" size="1.9 0.32 0.002" euler="0 0 -2.2571333" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_350" type="box" pos="-108.23529 19.27497 0.029" size="1.9 0.32 0.002" euler="0 0 -1.9647018" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_360" type="box" pos="-110.20464 7.63543 0.029" size="1.9 0.32 0.002" euler="0 0 -1.4775578" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_370" type="box" pos="-105.31445 -7.67168 0.029" size="1.9 0.32 0.002" euler="0 0 -1.1238518" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_L_380" type="box" pos="-94.84421 -24.60060 0.029" size="1.9 0.32 0.002" euler="0 0 -0.9147283" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_0" type="box" pos="-100.00616 -39.63885 0.029" size="1.9 0.32 0.002" euler="0 0 -0.8234628" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_10" type="box" pos="-83.08693 -54.38648 0.029" size="1.9 0.32 0.002" euler="0 0 -0.6201785" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_20" type="box" pos="-63.08546 -65.71076 0.029" size="1.9 0.32 0.002" euler="0 0 -0.3943939" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_30" type="box" pos="-41.76256 -70.52892 0.029" size="1.9 0.32 0.002" euler="0 0 -0.0453541" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_40" type="box" pos="-20.29272 -68.94934 0.029" size="1.9 0.32 0.002" euler="0 0 0.1695629" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_50" type="box" pos="-1.27079 -64.25265 0.029" size="1.9 0.32 0.002" euler="0 0 0.3859502" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_60" type="box" pos="14.12235 -54.45394 0.029" size="1.9 0.32 0.002" euler="0 0 0.6600615" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_70" type="box" pos="24.28510 -48.06059 0.029" size="1.9 0.32 0.002" euler="0 0 0.2778769" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_80" type="box" pos="32.90578 -48.99898 0.029" size="1.9 0.32 0.002" euler="0 0 -0.3520592" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_90" type="box" pos="44.70871 -54.92857 0.029" size="1.9 0.32 0.002" euler="0 0 -0.5019046" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_100" type="box" pos="58.24571 -61.88288 0.029" size="1.9 0.32 0.002" euler="0 0 -0.5336751" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_110" type="box" pos="73.55019 -71.43247 0.029" size="1.9 0.32 0.002" euler="0 0 -0.5169028" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_120" type="box" pos="91.64787 -76.79418 0.029" size="1.9 0.32 0.002" euler="0 0 0.0950686" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_130" type="box" pos="107.99055 -68.68942 0.029" size="1.9 0.32 0.002" euler="0 0 0.7195094" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_140" type="box" pos="119.31273 -55.23896 0.029" size="1.9 0.32 0.002" euler="0 0 1.0159603" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_150" type="box" pos="124.75868 -40.80009 0.029" size="1.9 0.32 0.002" euler="0 0 1.4232713" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_160" type="box" pos="124.26267 -25.25779 0.029" size="1.9 0.32 0.002" euler="0 0 1.7842691" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_170" type="box" pos="116.88476 -11.17939 0.029" size="1.9 0.32 0.002" euler="0 0 2.4470427" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_180" type="box" pos="102.09478 -5.19177 0.029" size="1.9 0.32 0.002" euler="0 0 2.8963160" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_190" type="box" pos="92.07267 -1.48536 0.029" size="1.9 0.32 0.002" euler="0 0 2.4558712" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_200" type="box" pos="88.28868 6.61508 0.029" size="1.9 0.32 0.002" euler="0 0 1.8152938" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_210" type="box" pos="85.67430 21.50014 0.029" size="1.9 0.32 0.002" euler="0 0 1.7387292" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_220" type="box" pos="82.14830 35.95671 0.029" size="1.9 0.32 0.002" euler="0 0 1.8147992" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_230" type="box" pos="78.64770 49.46351 0.029" size="1.9 0.32 0.002" euler="0 0 1.8927242" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_240" type="box" pos="70.80767 62.84426 0.029" size="1.9 0.32 0.002" euler="0 0 2.3599855" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_250" type="box" pos="58.43056 71.46085 0.029" size="1.9 0.32 0.002" euler="0 0 2.6932218" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_260" type="box" pos="42.39807 76.58329 0.029" size="1.9 0.32 0.002" euler="0 0 2.9474006" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_270" type="box" pos="20.91102 78.47344 0.029" size="1.9 0.32 0.002" euler="0 0 3.1408933" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_280" type="box" pos="-5.52773 77.32586 0.029" size="1.9 0.32 0.002" euler="0 0 -3.0696336" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_290" type="box" pos="-28.46876 75.50090 0.029" size="1.9 0.32 0.002" euler="0 0 -3.0684353" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_300" type="box" pos="-46.03232 74.09251 0.029" size="1.9 0.32 0.002" euler="0 0 -3.0267143" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_310" type="box" pos="-62.87132 70.60910 0.029" size="1.9 0.32 0.002" euler="0 0 -2.8323132" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_320" type="box" pos="-80.76762 63.04282 0.029" size="1.9 0.32 0.002" euler="0 0 -2.6699476" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_330" type="box" pos="-98.25442 52.31504 0.029" size="1.9 0.32 0.002" euler="0 0 -2.4989408" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_340" type="box" pos="-111.53889 39.50793 0.029" size="1.9 0.32 0.002" euler="0 0 -2.2571333" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_350" type="box" pos="-120.83994 24.51381 0.029" size="1.9 0.32 0.002" euler="0 0 -1.9647018" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_360" type="box" pos="-123.79536 6.36457 0.029" size="1.9 0.32 0.002" euler="0 0 -1.4775578" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_370" type="box" pos="-117.62363 -13.57138 0.029" size="1.9 0.32 0.002" euler="0 0 -1.1238518" material="custom_kerb_white" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_kerb_tile_R_380" type="box" pos="-105.66042 -32.92718 0.029" size="1.9 0.32 0.002" euler="0 0 -0.9147283" material="custom_kerb_red" contype="0" conaffinity="0" group="1" />
+    <geom name="custom_start_line" type="box" pos="-53.000000 -62.000000 0.035" size="0.16 6.0000 0.003" euler="0 0 -0.264308" rgba="0.98 0.98 0.98 1" contype="0" conaffinity="0" />
+    <geom name="custom_pit_garage" type="box" pos="-67.63849 -66.32605 3.0000" size="19 6 3" euler="0 0 -0.264308" material="custom_concrete" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_pit_upper" type="box" pos="-67.63849 -66.32605 6.6000" size="19 6 0.55" euler="0 0 -0.264308" material="custom_roof" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_pit_windows" type="box" pos="-66.04491 -60.43788 4.6000" size="18.4 0.12 1.15" euler="0 0 -0.264308" material="custom_window" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_control_tower" type="box" pos="-43.76789 -73.82236 5.0000" size="3.5 3.5 5" euler="0 0 -0.264308" material="custom_concrete" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tower_top" type="box" pos="-43.76789 -73.82236 10.6000" size="4.4 4.4 0.7" euler="0 0 -0.264308" material="custom_roof" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_grandstand" type="box" pos="-19.71574 -84.47572 2.3000" size="18 7 2.3" euler="0 0 -0.264308" material="custom_concrete" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_grandstand_roof" type="box" pos="-19.71574 -84.47572 7.3000" size="20 8 0.4" euler="0 0 -0.264308" material="custom_roof" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_start_post_-1" type="box" pos="-55.11605 -69.81872 3" size="0.20 0.20 3" euler="0 0 -0.264308" material="custom_roof" contype="0" conaffinity="0" />
+    <geom name="custom_start_post_1" type="box" pos="-50.88395 -54.18128 3" size="0.20 0.20 3" euler="0 0 -0.264308" material="custom_roof" contype="0" conaffinity="0" />
+    <geom name="custom_start_gantry" type="box" pos="-53.00000 -62.00000 6.0" size="0.25 8.4000 0.33" euler="0 0 -0.264308" material="custom_roof" contype="0" conaffinity="0" />
+    <geom name="custom_tree_trunk_0" type="cylinder" pos="25.1572 -65.9330 2.8566" size="0.22 2.8566" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_0" type="sphere" pos="25.1572 -65.9330 7.2631" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_5" type="cylinder" pos="146.0428 -92.8032 1.8916" size="0.22 1.8916" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_5" type="sphere" pos="146.0428 -92.8032 5.3332" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_6" type="cylinder" pos="-127.4523 58.2967 2.1081" size="0.22 2.1081" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_6" type="sphere" pos="-127.4523 58.2967 5.7663" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_8" type="cylinder" pos="42.6023 -20.7588 1.9103" size="0.22 1.9103" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_8" type="sphere" pos="42.6023 -20.7588 5.3707" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_10" type="cylinder" pos="-120.6523 69.8526 2.5002" size="0.22 2.5002" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_10" type="sphere" pos="-120.6523 69.8526 6.5504" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_12" type="cylinder" pos="-32.6607 -26.0759 2.1787" size="0.22 2.1787" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_12" type="sphere" pos="-32.6607 -26.0759 5.9074" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_13" type="cylinder" pos="-29.5881 36.4900 1.6581" size="0.22 1.6581" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_13" type="sphere" pos="-29.5881 36.4900 4.8663" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_14" type="cylinder" pos="-11.1273 7.5781 2.0819" size="0.22 2.0819" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_14" type="sphere" pos="-11.1273 7.5781 5.7138" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_15" type="cylinder" pos="-148.2215 44.1926 1.6618" size="0.22 1.6618" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_15" type="sphere" pos="-148.2215 44.1926 4.8736" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_16" type="cylinder" pos="19.9672 -74.8728 1.6932" size="0.22 1.6932" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_16" type="sphere" pos="19.9672 -74.8728 4.9365" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_17" type="cylinder" pos="-98.9390 -93.8004 1.8384" size="0.22 1.8384" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_17" type="sphere" pos="-98.9390 -93.8004 5.2269" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_19" type="cylinder" pos="-42.5368 32.9160 2.2439" size="0.22 2.2439" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_19" type="sphere" pos="-42.5368 32.9160 6.0378" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_23" type="cylinder" pos="-153.1562 -89.8428 1.6900" size="0.22 1.6900" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_23" type="sphere" pos="-153.1562 -89.8428 4.9300" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_24" type="cylinder" pos="-47.8127 96.3573 2.7446" size="0.22 2.7446" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_24" type="sphere" pos="-47.8127 96.3573 7.0393" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_27" type="cylinder" pos="95.8696 63.1226 1.8254" size="0.22 1.8254" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_27" type="sphere" pos="95.8696 63.1226 5.2008" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_29" type="cylinder" pos="73.8472 84.7691 2.2081" size="0.22 2.2081" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_29" type="sphere" pos="73.8472 84.7691 5.9662" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_30" type="cylinder" pos="120.7674 -77.8877 2.8464" size="0.22 2.8464" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_30" type="sphere" pos="120.7674 -77.8877 7.2428" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_34" type="cylinder" pos="-137.1771 -47.8072 2.6806" size="0.22 2.6806" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_34" type="sphere" pos="-137.1771 -47.8072 6.9113" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_35" type="cylinder" pos="-126.9050 94.4480 1.9625" size="0.22 1.9625" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_35" type="sphere" pos="-126.9050 94.4480 5.4750" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_37" type="cylinder" pos="149.1197 86.6269 2.0489" size="0.22 2.0489" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_37" type="sphere" pos="149.1197 86.6269 5.6479" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_39" type="cylinder" pos="120.1482 -105.3840 2.4413" size="0.22 2.4413" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_39" type="sphere" pos="120.1482 -105.3840 6.4326" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_43" type="cylinder" pos="49.7265 11.3048 2.3192" size="0.22 2.3192" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_43" type="sphere" pos="49.7265 11.3048 6.1884" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_44" type="cylinder" pos="-51.3500 94.3864 2.0102" size="0.22 2.0102" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_44" type="sphere" pos="-51.3500 94.3864 5.5704" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_48" type="cylinder" pos="-109.0809 -81.9839 2.0781" size="0.22 2.0781" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_48" type="sphere" pos="-109.0809 -81.9839 5.7062" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_49" type="cylinder" pos="-40.3207 -11.3652 2.4814" size="0.22 2.4814" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_49" type="sphere" pos="-40.3207 -11.3652 6.5127" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_51" type="cylinder" pos="-42.0509 35.1780 2.3373" size="0.22 2.3373" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_51" type="sphere" pos="-42.0509 35.1780 6.2245" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_53" type="cylinder" pos="-56.3118 37.9951 2.5685" size="0.22 2.5685" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_53" type="sphere" pos="-56.3118 37.9951 6.6869" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_54" type="cylinder" pos="-80.3761 -14.0129 2.2186" size="0.22 2.2186" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_54" type="sphere" pos="-80.3761 -14.0129 5.9873" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_56" type="cylinder" pos="-139.6196 106.4489 2.5749" size="0.22 2.5749" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_56" type="sphere" pos="-139.6196 106.4489 6.6998" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_57" type="cylinder" pos="-18.9840 35.9996 1.9862" size="0.22 1.9862" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_57" type="sphere" pos="-18.9840 35.9996 5.5225" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_58" type="cylinder" pos="65.2181 97.3797 2.6165" size="0.22 2.6165" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_58" type="sphere" pos="65.2181 97.3797 6.7830" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_59" type="cylinder" pos="-10.8006 104.4491 2.8026" size="0.22 2.8026" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_59" type="sphere" pos="-10.8006 104.4491 7.1552" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_60" type="cylinder" pos="-136.9438 -19.0474 2.2151" size="0.22 2.2151" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_60" type="sphere" pos="-136.9438 -19.0474 5.9802" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_61" type="cylinder" pos="-70.0185 25.1540 1.8293" size="0.22 1.8293" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_61" type="sphere" pos="-70.0185 25.1540 5.2086" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_62" type="cylinder" pos="76.6148 77.2609 1.7270" size="0.22 1.7270" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_62" type="sphere" pos="76.6148 77.2609 5.0040" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_64" type="cylinder" pos="42.8636 41.3007 2.8709" size="0.22 2.8709" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_64" type="sphere" pos="42.8636 41.3007 7.2917" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_65" type="cylinder" pos="92.4015 -34.7841 2.5625" size="0.22 2.5625" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_65" type="sphere" pos="92.4015 -34.7841 6.6751" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_72" type="cylinder" pos="27.0735 35.5954 2.7753" size="0.22 2.7753" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_72" type="sphere" pos="27.0735 35.5954 7.1006" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_73" type="cylinder" pos="-15.8931 -99.8319 1.8866" size="0.22 1.8866" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_73" type="sphere" pos="-15.8931 -99.8319 5.3232" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_74" type="cylinder" pos="5.1321 46.5056 2.7982" size="0.22 2.7982" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_74" type="sphere" pos="5.1321 46.5056 7.1463" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_76" type="cylinder" pos="28.7273 93.9032 2.0662" size="0.22 2.0662" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_76" type="sphere" pos="28.7273 93.9032 5.6825" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_77" type="cylinder" pos="133.6278 87.2230 2.3711" size="0.22 2.3711" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_77" type="sphere" pos="133.6278 87.2230 6.2922" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_79" type="cylinder" pos="-120.7494 -99.1595 2.4142" size="0.22 2.4142" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_79" type="sphere" pos="-120.7494 -99.1595 6.3785" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_80" type="cylinder" pos="65.9366 106.5689 2.4031" size="0.22 2.4031" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_80" type="sphere" pos="65.9366 106.5689 6.3562" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_81" type="cylinder" pos="153.0725 -20.9704 1.8174" size="0.22 1.8174" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_81" type="sphere" pos="153.0725 -20.9704 5.1848" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_82" type="cylinder" pos="-136.5286 -45.7413 2.3134" size="0.22 2.3134" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_82" type="sphere" pos="-136.5286 -45.7413 6.1769" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_83" type="cylinder" pos="150.7241 -43.7991 1.9440" size="0.22 1.9440" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_83" type="sphere" pos="150.7241 -43.7991 5.4380" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_84" type="cylinder" pos="69.2035 -24.1014 2.3480" size="0.22 2.3480" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_84" type="sphere" pos="69.2035 -24.1014 6.2460" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_85" type="cylinder" pos="-108.0601 76.3047 2.7992" size="0.22 2.7992" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_85" type="sphere" pos="-108.0601 76.3047 7.1484" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_86" type="cylinder" pos="79.0849 94.1108 2.0657" size="0.22 2.0657" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_86" type="sphere" pos="79.0849 94.1108 5.6813" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_87" type="cylinder" pos="-144.9496 -42.1402 2.7723" size="0.22 2.7723" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_87" type="sphere" pos="-144.9496 -42.1402 7.0945" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_89" type="cylinder" pos="-108.1347 -72.5235 2.1988" size="0.22 2.1988" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_89" type="sphere" pos="-108.1347 -72.5235 5.9476" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_90" type="cylinder" pos="131.9763 82.9217 2.5972" size="0.22 2.5972" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_90" type="sphere" pos="131.9763 82.9217 6.7444" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_93" type="cylinder" pos="7.9621 -100.7675 2.7655" size="0.22 2.7655" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_93" type="sphere" pos="7.9621 -100.7675 7.0810" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_95" type="cylinder" pos="50.2872 31.0969 2.5029" size="0.22 2.5029" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_95" type="sphere" pos="50.2872 31.0969 6.5558" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_97" type="cylinder" pos="135.9231 25.2915 2.8746" size="0.22 2.8746" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_97" type="sphere" pos="135.9231 25.2915 7.2992" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_98" type="cylinder" pos="108.4512 -96.0047 2.4896" size="0.22 2.4896" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_98" type="sphere" pos="108.4512 -96.0047 6.5291" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_101" type="cylinder" pos="-141.1423 96.4430 1.7043" size="0.22 1.7043" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_101" type="sphere" pos="-141.1423 96.4430 4.9587" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_102" type="cylinder" pos="-137.4233 -107.4409 1.8068" size="0.22 1.8068" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_102" type="sphere" pos="-137.4233 -107.4409 5.1637" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_103" type="cylinder" pos="150.7061 72.4072 2.7960" size="0.22 2.7960" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_103" type="sphere" pos="150.7061 72.4072 7.1420" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_106" type="cylinder" pos="-71.4081 101.7061 2.5604" size="0.22 2.5604" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_106" type="sphere" pos="-71.4081 101.7061 6.6708" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_109" type="cylinder" pos="5.0637 -2.6077 2.7996" size="0.22 2.7996" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_109" type="sphere" pos="5.0637 -2.6077 7.1493" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_111" type="cylinder" pos="-140.5061 6.5780 2.5413" size="0.22 2.5413" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_111" type="sphere" pos="-140.5061 6.5780 6.6325" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_112" type="cylinder" pos="-151.6816 42.4082 2.0075" size="0.22 2.0075" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_112" type="sphere" pos="-151.6816 42.4082 5.5651" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_113" type="cylinder" pos="38.9552 26.6261 1.8205" size="0.22 1.8205" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_113" type="sphere" pos="38.9552 26.6261 5.1911" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_114" type="cylinder" pos="137.5691 -55.5994 1.8206" size="0.22 1.8206" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_114" type="sphere" pos="137.5691 -55.5994 5.1911" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_115" type="cylinder" pos="-17.7644 -94.1832 1.7766" size="0.22 1.7766" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_115" type="sphere" pos="-17.7644 -94.1832 5.1032" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_120" type="cylinder" pos="-131.2857 61.3899 2.7329" size="0.22 2.7329" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_120" type="sphere" pos="-131.2857 61.3899 7.0159" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_121" type="cylinder" pos="109.4164 46.2739 2.2874" size="0.22 2.2874" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_121" type="sphere" pos="109.4164 46.2739 6.1247" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_122" type="cylinder" pos="141.9457 51.8117 2.6036" size="0.22 2.6036" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_122" type="sphere" pos="141.9457 51.8117 6.7573" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_123" type="cylinder" pos="127.5988 -96.2279 2.5765" size="0.22 2.5765" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_123" type="sphere" pos="127.5988 -96.2279 6.7030" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_124" type="cylinder" pos="26.1164 -105.2565 1.9692" size="0.22 1.9692" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_124" type="sphere" pos="26.1164 -105.2565 5.4884" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_128" type="cylinder" pos="148.7757 11.3079 2.5641" size="0.22 2.5641" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_128" type="sphere" pos="148.7757 11.3079 6.6782" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_129" type="cylinder" pos="-127.9354 -77.6818 2.3493" size="0.22 2.3493" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_129" type="sphere" pos="-127.9354 -77.6818 6.2486" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_trunk_135" type="cylinder" pos="94.8287 -91.8752 1.9635" size="0.22 1.9635" material="custom_trunk" contype="0" conaffinity="0" group="3" />
+    <geom name="custom_tree_crown_135" type="sphere" pos="94.8287 -91.8752 5.4770" size="1.9" material="custom_tree" contype="0" conaffinity="0" group="3" />
+    <camera name="custom_aerial" pos="0 -170 125" xyaxes="1 0 0 0 0.55 0.835" />
+  </worldbody>
+
+  <contact>
+    <exclude body1="chassis" body2="FL_wheel"/>
+    <exclude body1="chassis" body2="FR_wheel"/>
+    <exclude body1="chassis" body2="RL_wheel"/>
+    <exclude body1="chassis" body2="RR_wheel"/>
+</contact>
+
+  <actuator>
+
+    <position name="steering_FL" joint="steer_FL" kp="2500" ctrlrange="-0.5 0.5" ctrllimited="true" forcerange="-1500 1500" forcelimited="true" />
+
+    <position name="steering_FR" joint="steer_FR" kp="2500" ctrlrange="-0.5 0.5" ctrllimited="true" forcerange="-1500 1500" forcelimited="true" />
+    <motor name="rear_drive_RL" joint="spin_RL" gear="1" ctrlrange="-500 500" ctrllimited="true" />
+    <motor name="rear_drive_RR" joint="spin_RR" gear="1" ctrlrange="-500 500" ctrllimited="true" />
+  </actuator>
+</mujoco>
