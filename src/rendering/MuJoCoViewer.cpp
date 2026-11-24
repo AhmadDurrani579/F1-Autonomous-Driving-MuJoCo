@@ -112,7 +112,7 @@ void MuJoCoViewer::run() {
     std::cout << "  C            : Change camera\n";
     std::cout << "  ESC          : Exit\n\n";
 
-    constexpr double targetSpeed = 2.0;
+    constexpr double targetSpeed = 3.0;
     constexpr double Kp = 100.0;
     constexpr double maxTorque = 40.0;
     constexpr double steeringCommand = 0.1;
