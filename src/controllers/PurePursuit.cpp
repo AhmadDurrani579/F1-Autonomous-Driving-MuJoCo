@@ -129,11 +129,59 @@ double PurePursuit::computeSteering(
         }
     }
 
-    // Travel lookahead_ metres forward from
-    // the projected position along the racing line.
+    // ==========================================
+    // Curvature-adaptive Pure Pursuit lookahead
+    // ==========================================
+
+    // Sample three points ahead on the racing line.
+    const Waypoint& p0 = waypoints_[nearestSegment];
+    const Waypoint& p1 =
+        waypoints_[(nearestSegment + 2) % count];
+    const Waypoint& p2 =
+        waypoints_[(nearestSegment + 4) % count];
+
+    // Calculate triangle side lengths.
+    const double a = std::hypot(
+        p1.x - p0.x,
+        p1.y - p0.y
+    );
+
+    const double b = std::hypot(
+        p2.x - p1.x,
+        p2.y - p1.y
+    );
+
+    const double c = std::hypot(
+        p2.x - p0.x,
+        p2.y - p0.y
+    );
+
+    // Twice the signed triangle area.
+    const double cross =
+        (p1.x - p0.x) * (p2.y - p0.y) -
+        (p1.y - p0.y) * (p2.x - p0.x);
+
+    // Menger curvature (inverse metres).
+    double curvature = 0.0;
+
+    if (a > 1e-6 && b > 1e-6 && c > 1e-6) {
+        curvature = 2.0 * std::abs(cross) / (a * b * c);
+    }
+
+    // Shorten lookahead in tighter corners.
+    double adaptiveLookahead = lookahead_;
+
+    if (curvature > 0.075) {
+        adaptiveLookahead = 2.75;
+    } else if (curvature > 0.04) {
+        adaptiveLookahead = 3.0;
+    }
+
+    // Travel forward from the projected position.
     std::size_t index = nearestSegment;
-    double remainingDistance = lookahead_;
+    double remainingDistance = adaptiveLookahead;
     double startT = nearestT;
+
 
     Waypoint targetPoint = waypoints_[index];
 

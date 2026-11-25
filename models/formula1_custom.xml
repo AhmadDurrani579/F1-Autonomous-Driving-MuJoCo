@@ -118,7 +118,7 @@
       <geom name="chassis_collision" type="box" pos="0 0 0.49" size="1.75 0.6 0.20" mass="0" contype="1" conaffinity="1" rgba="0 0 0 0" />
       <body name="FL_steer" pos="1.8 0.83 0.36">
         <inertial pos="0 0 0" mass="1" diaginertia="0.01 0.01 0.01" />
-        <joint name="steer_FL" type="hinge" axis="0 0 1" limited="true" range="-0.5 0.5" damping="50" />
+        <joint name="steer_FL" type="hinge" axis="0 0 1" limited="true" range="-0.5 0.5" damping="20" />
         <body name="FL_wheel">
           <geom name="f1color_wheel_FL_004" type="mesh" mesh="f1color_wheel_FL_004" contype="0" conaffinity="0" rgba="0.55000 0.56000 0.58000 1.00000" />
           <geom name="f1color_wheel_FL_003" type="mesh" mesh="f1color_wheel_FL_003" contype="0" conaffinity="0" rgba="0.80000 0.80000 0.80000 1.00000" />
@@ -132,7 +132,7 @@
       </body>
       <body name="FR_steer" pos="1.8 -0.83 0.36">
         <inertial pos="0 0 0" mass="1" diaginertia="0.01 0.01 0.01" />
-        <joint name="steer_FR" type="hinge" axis="0 0 1" limited="true" range="-0.5 0.5" damping="50" />
+        <joint name="steer_FR" type="hinge" axis="0 0 1" limited="true" range="-0.5 0.5" damping="20" />
         <body name="FR_wheel">
           <geom name="f1color_wheel_FR_004" type="mesh" mesh="f1color_wheel_FR_004" contype="0" conaffinity="0" rgba="0.55000 0.56000 0.58000 1.00000" />
           <geom name="f1color_wheel_FR_003" type="mesh" mesh="f1color_wheel_FR_003" contype="0" conaffinity="0" rgba="0.80000 0.80000 0.80000 1.00000" />
@@ -421,7 +421,6 @@
   <actuator>
 
     <position name="steering_FL" joint="steer_FL" kp="2500" ctrlrange="-0.5 0.5" ctrllimited="true" forcerange="-1500 1500" forcelimited="true" />
-
     <position name="steering_FR" joint="steer_FR" kp="2500" ctrlrange="-0.5 0.5" ctrllimited="true" forcerange="-1500 1500" forcelimited="true" />
     <motor name="rear_drive_RL" joint="spin_RL" gear="1" ctrlrange="-500 500" ctrllimited="true" />
     <motor name="rear_drive_RR" joint="spin_RR" gear="1" ctrlrange="-500 500" ctrllimited="true" />
