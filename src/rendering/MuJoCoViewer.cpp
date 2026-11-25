@@ -112,7 +112,7 @@ void MuJoCoViewer::run() {
     std::cout << "  C            : Change camera\n";
     std::cout << "  ESC          : Exit\n\n";
 
-    constexpr double targetSpeed = 3.0;
+    constexpr double targetSpeed = 4.0;
     constexpr double Kp = 100.0;
     constexpr double maxTorque = 40.0;
     constexpr double steeringCommand = 0.1;
@@ -311,7 +311,7 @@ void MuJoCoViewer::run() {
                 const double speedError = desiredSpeed - state.speed;
 
                 // Permit negative rear-wheel torque for braking.
-                constexpr double maxBrakingTorque = 20.0;
+                constexpr double maxBrakingTorque = 30.0;
 
                 const double torque = std::clamp(
                     Kp * speedError,
