@@ -208,7 +208,7 @@ double PurePursuit::computeTargetSpeed(
     constexpr double planningDistance = 30.0;
     constexpr double sampleStep = 2.0;
     constexpr double curvatureSpacing = 3.0;
-    constexpr double brakingBuffer = 3.0;
+    constexpr double brakingBuffer = 5.0;
 
     const std::size_t count = waypoints_.size();
 

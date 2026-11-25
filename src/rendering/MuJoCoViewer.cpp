@@ -127,7 +127,7 @@ void MuJoCoViewer::run() {
     PurePursuit purePursuit(
         "tracks/custom_waypoints.csv",
         3.6,
-        5.0
+        4.0
     );
 
     bool autonomousMode = false;
