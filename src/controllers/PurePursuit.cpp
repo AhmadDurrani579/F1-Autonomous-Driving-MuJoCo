@@ -73,12 +73,13 @@ PurePursuit::PurePursuit(
 // Calculate steering angle
 // ==================================================
 
+
 double PurePursuit::computeSteering(
     const VehicleState& state
 ) {
     const std::size_t count = waypoints_.size();
 
-    // Find the nearest point on the racing line.
+    // Find the nearest waypoint.
     std::size_t nearest = 0;
     double bestDistanceSquared =
         std::numeric_limits<double>::infinity();
@@ -95,51 +96,62 @@ double PurePursuit::computeSteering(
         }
     }
 
-    // Move forward along the path by lookahead metres.
-    std::size_t target = nearest;
-    double distanceAlongPath = 0.0;
+    // Interpolate the target position along the path.
+    std::size_t index = nearest;
+    double remainingDistance = lookahead_;
+
+    Waypoint targetPoint = waypoints_[nearest];
 
     for (std::size_t step = 0; step < count; ++step) {
-        const std::size_t next = (target + 1) % count;
+        const std::size_t next = (index + 1) % count;
 
-        const double dx =
-            waypoints_[next].x - waypoints_[target].x;
+        const Waypoint& a = waypoints_[index];
+        const Waypoint& b = waypoints_[next];
 
-        const double dy =
-            waypoints_[next].y - waypoints_[target].y;
+        const double segmentLength = std::hypot(
+            b.x - a.x,
+            b.y - a.y
+        );
 
-        distanceAlongPath += std::hypot(dx, dy);
-        target = next;
+        if (segmentLength < 1e-9) {
+            index = next;
+            continue;
+        }
 
-        if (distanceAlongPath >= lookahead_) {
+        if (remainingDistance <= segmentLength) {
+            const double t =
+                remainingDistance / segmentLength;
+
+            targetPoint.x =
+                a.x + t * (b.x - a.x);
+
+            targetPoint.y =
+                a.y + t * (b.y - a.y);
+
+            targetIndex_ = next;
             break;
         }
+
+        remainingDistance -= segmentLength;
+        index = next;
+        targetIndex_ = index;
     }
 
-    targetIndex_ = target;
+    // Target position relative to the vehicle.
+    const double dx = targetPoint.x - state.x;
+    const double dy = targetPoint.y - state.y;
 
-    const double dx =
-        waypoints_[target].x - state.x;
-
-    const double dy =
-        waypoints_[target].y - state.y;
-
-    // Convert global target direction into
-    // an angle relative to the car's heading.
     const double alpha =
         std::atan2(dy, dx) - state.heading;
 
-    // Actual distance to selected target.
     const double targetDistance =
         std::max(0.1, std::hypot(dx, dy));
 
-    // Bicycle-model Pure Pursuit steering.
-    const double steering = std::atan2(
+    // Pure Pursuit bicycle-model steering.
+    return std::atan2(
         2.0 * wheelbase_ * std::sin(alpha),
         targetDistance
     );
-
-    return steering;
 }
 
 
