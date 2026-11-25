@@ -74,33 +74,68 @@ PurePursuit::PurePursuit(
 // ==================================================
 
 
+
 double PurePursuit::computeSteering(
     const VehicleState& state
 ) {
     const std::size_t count = waypoints_.size();
 
-    // Find the nearest waypoint.
-    std::size_t nearest = 0;
+    if (count < 2) {
+        return 0.0;
+    }
+
+    // Find the closest projection of the vehicle
+    // onto any segment of the closed racing line.
+    std::size_t nearestSegment = 0;
+    double nearestT = 0.0;
     double bestDistanceSquared =
         std::numeric_limits<double>::infinity();
 
     for (std::size_t i = 0; i < count; ++i) {
-        const double dx = waypoints_[i].x - state.x;
-        const double dy = waypoints_[i].y - state.y;
+        const std::size_t next = (i + 1) % count;
+
+        const Waypoint& a = waypoints_[i];
+        const Waypoint& b = waypoints_[next];
+
+        const double sx = b.x - a.x;
+        const double sy = b.y - a.y;
+        const double lengthSquared = sx * sx + sy * sy;
+
+        if (lengthSquared < 1e-12) {
+            continue;
+        }
+
+        const double px = state.x - a.x;
+        const double py = state.y - a.y;
+
+        const double t = std::clamp(
+            (px * sx + py * sy) / lengthSquared,
+            0.0,
+            1.0
+        );
+
+        const double projectedX = a.x + t * sx;
+        const double projectedY = a.y + t * sy;
+
+        const double dx = state.x - projectedX;
+        const double dy = state.y - projectedY;
 
         const double distanceSquared = dx * dx + dy * dy;
 
         if (distanceSquared < bestDistanceSquared) {
             bestDistanceSquared = distanceSquared;
-            nearest = i;
+            nearestSegment = i;
+            nearestT = t;
         }
     }
 
-    // Interpolate the target position along the path.
-    std::size_t index = nearest;
+    // Travel lookahead_ metres forward from
+    // the projected position along the racing line.
+    std::size_t index = nearestSegment;
     double remainingDistance = lookahead_;
+    double startT = nearestT;
 
-    Waypoint targetPoint = waypoints_[nearest];
+    Waypoint targetPoint = waypoints_[index];
 
     for (std::size_t step = 0; step < count; ++step) {
         const std::size_t next = (index + 1) % count;
@@ -108,36 +143,37 @@ double PurePursuit::computeSteering(
         const Waypoint& a = waypoints_[index];
         const Waypoint& b = waypoints_[next];
 
-        const double segmentLength = std::hypot(
-            b.x - a.x,
-            b.y - a.y
-        );
+        const double sx = b.x - a.x;
+        const double sy = b.y - a.y;
+        const double segmentLength = std::hypot(sx, sy);
 
         if (segmentLength < 1e-9) {
             index = next;
+            startT = 0.0;
             continue;
         }
 
-        if (remainingDistance <= segmentLength) {
+        const double availableDistance =
+            (1.0 - startT) * segmentLength;
+
+        if (remainingDistance <= availableDistance) {
             const double t =
-                remainingDistance / segmentLength;
+                startT + remainingDistance / segmentLength;
 
-            targetPoint.x =
-                a.x + t * (b.x - a.x);
-
-            targetPoint.y =
-                a.y + t * (b.y - a.y);
+            targetPoint.x = a.x + t * sx;
+            targetPoint.y = a.y + t * sy;
 
             targetIndex_ = next;
             break;
         }
 
-        remainingDistance -= segmentLength;
+        remainingDistance -= availableDistance;
         index = next;
+        startT = 0.0;
         targetIndex_ = index;
     }
 
-    // Target position relative to the vehicle.
+    // Calculate the direction to the target.
     const double dx = targetPoint.x - state.x;
     const double dy = targetPoint.y - state.y;
 
