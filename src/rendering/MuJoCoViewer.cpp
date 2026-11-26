@@ -1,3 +1,5 @@
+#include "telemetry/LapTracker.h"
+#include <cstdio>
 
 #include "MuJoCoViewer.h"
 
@@ -130,6 +132,8 @@ void MuJoCoViewer::run() {
         4.0
     );
 
+    LapTracker lapTracker("tracks/custom_waypoints.csv");
+
     bool autonomousMode = false;
     bool wasADown = false;
     bool wasMDown = false;
@@ -212,7 +216,9 @@ void MuJoCoViewer::run() {
         // Reset the physical simulation.
         if (resetDown && !wasResetDown) {
             simulator_.reset();
+            lapTracker.reset();
             accumulator = 0.0;
+            std::cout << "Lap timing reset.\n";
         }
 
         // Toggle between chase and aerial views.
@@ -488,7 +494,21 @@ void MuJoCoViewer::run() {
                 }
 
                 // ==========================================
-                // 6. Consume one simulation timestep
+                // 6. Update lap tracking
+                // ==========================================
+                {
+                    const VehicleState lapState =
+                        simulator_.getVehicleState();
+
+                    lapTracker.update(
+                        lapState.x,
+                        lapState.y,
+                        simulator_.getSimulationTime()
+                    );
+                }
+
+                // ==========================================
+                // 7. Consume one simulation timestep
                 // ==========================================
                 accumulator -= timestep;
             }
@@ -521,6 +541,86 @@ void MuJoCoViewer::run() {
             &scene_,
             &context_
         );
+
+        // ==========================================
+        // Live telemetry HUD
+        // ==========================================
+        {
+            const VehicleState hudState =
+                simulator_.getVehicleState();
+
+            const double speedKmh = hudState.speed * 3.6;
+
+            const double hudCTE =
+                purePursuit.crossTrackError(hudState);
+
+            const double simTime =
+                simulator_.getSimulationTime();
+
+            char currentLap[32] = "WAITING";
+            char lastLap[32] = "--";
+            char bestLap[32] = "--";
+
+            if (lapTracker.timingStarted()) {
+                std::snprintf(
+                    currentLap,
+                    sizeof(currentLap),
+                    "%.2f s",
+                    lapTracker.currentLapTime(simTime)
+                );
+            }
+
+            if (lapTracker.lastLapTime() > 0.0) {
+                std::snprintf(
+                    lastLap,
+                    sizeof(lastLap),
+                    "%.2f s",
+                    lapTracker.lastLapTime()
+                );
+            }
+
+            if (lapTracker.bestLapTime() > 0.0) {
+                std::snprintf(
+                    bestLap,
+                    sizeof(bestLap),
+                    "%.2f s",
+                    lapTracker.bestLapTime()
+                );
+            }
+
+            char hud[512];
+
+            std::snprintf(
+                hud,
+                sizeof(hud),
+                "MODE: %s\n"
+                "SPEED: %.2f km/h\n"
+                "CTE: %.3f m\n"
+                "SIM TIME: %.1f s\n"
+                "\n"
+                "LAPS COMPLETED: %d\n"
+                "CURRENT LAP: %s\n"
+                "LAST LAP: %s\n"
+                "BEST LAP: %s",
+                autonomousMode ? "AUTO" : "MANUAL",
+                speedKmh,
+                hudCTE,
+                simTime,
+                lapTracker.completedLaps(),
+                currentLap,
+                lastLap,
+                bestLap
+            );
+
+            mjr_overlay(
+                mjFONT_NORMAL,
+                mjGRID_TOPLEFT,
+                viewport,
+                hud,
+                nullptr,
+                &context_
+            );
+        }
 
         glfwSwapBuffers(window_);
     }

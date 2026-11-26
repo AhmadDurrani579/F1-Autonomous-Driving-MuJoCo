@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include "simulation/MuJoCoSimulator.h"
+#include "controllers/DrivingController.h"
 
 #include <cstddef>
 #include <string>
@@ -12,7 +12,7 @@ struct Waypoint {
     double y = 0.0;
 };
 
-class PurePursuit {
+class PurePursuit : public DrivingController {
 public:
     explicit PurePursuit(
         const std::string& waypointFile,
@@ -20,15 +20,17 @@ public:
         double lookahead = 5.0
     );
 
-    double computeSteering(const VehicleState& state);
+    double computeSteering(const VehicleState& state) override;
 
-    double crossTrackError(const VehicleState& state) const;
+    double crossTrackError(const VehicleState& state) const override;
 
     double computeTargetSpeed(
         const VehicleState& state,
         double maximumSpeed = 2.0
-    ) const;
+    ) const override;
     
+    std::string name() const override { return "Pure Pursuit"; }
+
     std::size_t targetIndex() const {
         return targetIndex_;
     }
